@@ -8,17 +8,14 @@
             <div class="date post_date">
                 {{ post.published_date }}
             </div>
-        {% else %}
-            <a href="{% url 'post_publish' pk=post.pk %}" class="btn btn-primary">Publish</a>
         {% endif %}
 
         <p class="post_content">{{ post.text|safe|linebreaksbr }}</p>
+
         <hr>
+
         {% if user.is_authenticated %}
-            <div class="d-flex justify-content-between">
-                <a href="{% url 'post_edit' pk=post.pk %}" class="button button-edit">Ediаt</a>
-                <a href="{% url 'post_remove' pk=post.pk %}" class="button button-remove">Remove</a>
-            </div>
+            {% include 'components/buttons.html' %}
         {% endif %}
     </div>
     <div class="d-flex flex-column">

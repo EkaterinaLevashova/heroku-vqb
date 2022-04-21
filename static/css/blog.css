@@ -1,3 +1,4 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
 body {
   font-family: 'Montserrat', monospace;
   background-color: #161616;
@@ -10,48 +11,34 @@ h1 {
   margin-bottom: 2rem; }
 
 a {
-  color: #cf1d1d; }
+  color: #cf1d1d;
+  text-decoration: none; }
   a:hover {
     color: #F59D22FF; }
 
 .button {
-  border-radius: 0.6em;
-  cursor: pointer;
-  display: flex;
-  align-self: flex-end;
-  font-weight: bold;
-  line-height: 1;
-  margin: 1rem 0;
-  padding: 0.5em 2em;
-  text-decoration: none;
-  text-align: center;
-  text-transform: uppercase; }
-  .button-comment {
-    border: 2px solid #cf1d1d;
-    color: #cf1d1d;
-    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out; }
-    .button-comment:hover {
-      box-shadow: 0 0 40px 40px #cf1d1d inset;
-      color: #fcdeb4; }
-  .button-edit {
-    border: 2px solid #F59D22FF;
-    color: #F59D22FF;
-    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out; }
-    .button-edit:hover {
-      box-shadow: 0 0 40px 40px #F59D22FF inset;
-      color: #cf1d1d; }
-  .button-remove {
-    border: 2px solid #cf1d1d;
-    color: #cf1d1d;
-    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out; }
-    .button-remove:hover {
-      box-shadow: 0 0 40px 40px #cf1d1d inset;
-      color: #fcdeb4; }
+  font-weight: 400;
+  border-radius: 3px;
+  float: left;
+  transition: background-color 300ms ease-in-out; }
+  .button_publish {
+    background-color: #479d3a; }
+  .button_edit {
+    background-color: #F59D22FF; }
+  .button_remove {
+    background-color: #cf1d1d; }
+  .button a {
+    color: #161616;
+    text-decoration: none; }
+
+.wrapper {
+  width: 46%; }
 
 .block {
   border-radius: 0.4rem;
   padding: 1rem 2rem;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+  word-break: break-all; }
   .block_theme {
     color: #d7d7d7;
     background-color: #242424; }
@@ -67,8 +54,7 @@ a {
   text-align: center; }
 
 .post_preview {
-  transition: all 0.5s ease-out 100ms;
-  width: 46%; }
+  transition: all 0.5s ease-out 100ms; }
   .post_preview-link {
     color: #F59D22FF; }
   .post_preview:hover {
