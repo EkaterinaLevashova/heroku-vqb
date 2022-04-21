@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+    <h1>All posts</h1>
+    <hr>
+    <span class="glyphicon glyphicon-pencil"></span>
+    <div class="d-flex flex-wrap justify-content-around">
+        {% for post in post_list %}
+                <div class="block block_theme post_preview">
+                    <div class="d-flex flex-column justify-content-between">
+                        <h2><a href="{% url 'post_detail' pk=post.pk %}" class="post_preview-link">{{ post.title|truncatechars:15 }}</a></h2>
+                        <div class="post_date d-flex">
+                            <p class="my-auto publish">Published on: {{ post.published_date|date:'D M Y' }}</p>
+                        </div>
+                        <p class="post_content">{{ post.text|safe|linebreaksbr|truncatechars:500 }}</p>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approve_comments.count }}</a>
+                        {% if user.is_authenticated %}
+                            <div>
+                                <a href="{% url 'post_edit' pk=post.pk %}" class="link-dark">Edit</a>
+                                <a href="{% url 'post_remove' pk=post.pk %}" class="link-dark">Remove</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
