@@ -3,20 +3,20 @@
     {% if not post.published_date %}
         <div class="btn button button_publish btn-sm my-auto mx-2">
             <a href="{% url 'post_publish' pk=post.pk %}">
-              <i class="fa fa-solid fa-upload"></i>
+              <i class="fa fa-solid fa-upload me-1"></i>PUBLISH
             </a>
         </div>
     {% endif %}
 
     <div class="btn button button_edit btn-sm my-auto mx-2">
         <a href="{% url 'post_edit' pk=post.pk %}">
-          <i class="fa fa-solid fa-pencil"></i>
+          <i class="fa fa-solid fa-pencil me-1"></i>EDIT
         </a>
     </div>
 
     <div class="btn button button_remove btn-sm my-auto mx-2">
         <a href="{% url 'post_remove' pk=post.pk %}">
-          <i class="fa fa-trash-o"></i>
+          <i class="fa fa-trash-o me-1"></i>REMOVE
         </a>
     </div>
 
