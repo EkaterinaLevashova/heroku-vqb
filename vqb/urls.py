@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path('', include('blog.urls')),
@@ -23,4 +24,5 @@ urlpatterns = [
     path('__reload__/', include('django_browser_reload.urls')),
     path('accounts/login/', views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('accounts/logout/', views.LogoutView.as_view(), name='logout', kwargs={'next_page': 'post_list'}),
+    path('favicon.ico', RedirectView.as_view(url='/static/images/favicon.ico'), name='favicon'),
 ]
