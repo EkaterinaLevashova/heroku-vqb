@@ -7,7 +7,7 @@
 {#    <span class="glyphicon glyphicon-pencil"></span>#}
     <div class="d-flex justify-content-around flex-wrap">
         {% for post in post_list %}
-            <div class="d-flex flex-column mb-4">
+            <div class="d-flex flex-column mb-4 w-100">
                 <div class="block block_theme post_preview">
                         <div class="d-flex flex-column justify-content-between">
                             <h2><a href="{% url 'post_detail' pk=post.pk %}" class="post_preview-link">{{ post.title|truncatechars:15 }}</a></h2>

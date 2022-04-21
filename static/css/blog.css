@@ -105,24 +105,11 @@ a {
   .nav-link:hover {
     color: #F59D22FF !important; }
 
-.effect-underline:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  display: inline-block;
-  height: 1em;
+.form-field {
+  border: 2px solid #F59D22FF;
+  border-radius: 5px;
+  height: 50px;
   width: 100%;
-  border-bottom: 1px solid;
-  margin-top: 10px;
-  opacity: 0;
-  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-  transition: opacity 0.35s, transform 0.35s;
-  -webkit-transform: scale(0, 1);
-  transform: scale(0, 1); }
-
-.effect-underline:hover:after {
-  opacity: 1;
-  -webkit-transform: scale(1);
-  transform: scale(1); }
+  margin: 10px 10px 10px 0; }
 
 /*# sourceMappingURL=blog.css.map */

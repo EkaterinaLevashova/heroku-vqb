@@ -3,11 +3,20 @@
 {% block content %}
     <h1>New post!</h1>
     <div class="block block_theme">
-        <form class="post-form" method="POST">
+        <form method="POST">
             {% csrf_token %}
-            {{ form.as_p }}
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    <div class="col">
+                        {{ field }}
+                    </div>
+                </div>
+            {% endfor %}
             <button class="save btn btn-default" type="submit">Save</button>
         </form>
-        <script>let editor = new MediumEditor('.editable');</script>
+
+
+{#        <script>let editor = new MediumEditor('.editable');</script>#}
     </div>
 {% endblock %}
