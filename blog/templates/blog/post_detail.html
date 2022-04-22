@@ -1,5 +1,9 @@
 {% extends 'blog/base.html' %}
 
+{% block title %}
+    <title>{{ post.title|truncatechars:150 }}</title>
+{% endblock %}
+
 {% block content %}
     <div class="block block_theme">
         <h1 class="post_title">{{ post.title }}</h1>

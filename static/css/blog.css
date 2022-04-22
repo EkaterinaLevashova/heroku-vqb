@@ -11,10 +11,14 @@ h1 {
   margin-bottom: 2rem; }
 
 a {
-  color: #cf1d1d;
+  color: #F59D22FF;
   text-decoration: none; }
   a:hover {
-    color: #F59D22FF; }
+    color: #cf1d1d; }
+
+hr {
+  color: #F59D22FF;
+  margin: 8px 0; }
 
 .button {
   font-weight: 400;
@@ -22,7 +26,7 @@ a {
   float: left;
   transition: background-color 300ms ease-in-out; }
   .button_publish {
-    background-color: #479d3a; }
+    background-color: #d7d7d7; }
   .button_edit {
     background-color: #F59D22FF; }
   .button_remove {
@@ -67,6 +71,11 @@ a {
   .block_theme {
     color: #d7d7d7;
     background-color: #242424; }
+  .block_add_comment {
+    color: #cf1d1d;
+    text-decoration: none; }
+    .block_add_comment:hover {
+      color: #F59D22FF; }
 
 .publish {
   color: #8a8a8a; }
@@ -105,11 +114,25 @@ a {
   .nav-link:hover {
     color: #F59D22FF !important; }
 
-.form-field {
-  border: 2px solid #F59D22FF;
+.form_field {
+  border: 0.5px solid #242424;
   border-radius: 5px;
-  height: 50px;
   width: 100%;
   margin: 10px 10px 10px 0; }
+  .form_field-base {
+    background-color: #F59D22FF; }
+    .form_field-base::placeholder {
+      color: #242424; }
+  .form_field-text {
+    color: #F59D22FF;
+    min-height: 100px;
+    padding: 5px 10px;
+    background-color: #242424; }
+  .form_field:focus {
+    color: #F59D22FF;
+    background-color: #242424;
+    border: 1px solid #242424;
+    box-shadow: 0 0 8px -1px #242424;
+    outline-style: groove; }
 
 /*# sourceMappingURL=blog.css.map */

@@ -5,7 +5,7 @@ $yellow: #F59D22FF;
 $red: #cf1d1d;
 $background: #161616;
 
-$done: #479d3a;
+
 $hover: $yellow;
 $link-color: $red;
 
@@ -19,7 +19,7 @@ $base-color-l-40: lighten($base-color, 40%);
 $base-color-l-30: lighten($base-color, 30%);
 $base-color-l-20: lighten($base-color, 20%);
 $base-color-l-10: lighten($base-color, 10%);
-
+$done: $base-color-l-70;
 body {
   font-family: 'Montserrat', monospace;
   background-color: $background;
@@ -34,11 +34,16 @@ h1 {
 }
 
 a {
-  color: $link-color;
+  color: $yellow;
   text-decoration: none;
   &:hover {
-    color: $hover;
+    color: $red;
   }
+}
+
+hr {
+  color:$yellow;
+  margin: 8px 0;
 }
 
 .button {
@@ -106,6 +111,13 @@ a {
     color: $base-color-l-70;
     background-color: $base-color;
   }
+  &_add_comment {
+    color: $red;
+    text-decoration: none;
+    &:hover {
+      color: $yellow;
+    }
+  }
 }
 
 .publish {
@@ -164,10 +176,30 @@ a {
   }
 }
 
-.form-field {
-  border: 2px solid $yellow;
+.form_field {
+  border: .5px solid $base-color;
   border-radius: 5px;
-  height: 50px;
   width: 100%;
   margin: 10px 10px 10px 0;
+
+  &-base {
+    background-color: $yellow;
+    &::placeholder {
+      color: $base-color;
+    }
+  }
+  &-text {
+    color: $yellow;
+    min-height: 100px;
+    padding: 5px 10px;
+    background-color: $base-color;
+
+  }
+  &:focus {
+    color: $yellow;
+    background-color: $base-color;
+    border: 1px solid $base-color;
+    box-shadow: 0 0 8px -1px $base-color;
+    outline-style: groove;
+  }
 }

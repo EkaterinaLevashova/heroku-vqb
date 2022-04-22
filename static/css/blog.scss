@@ -1,6 +1,13 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+
 $base-color: #242424;
-$second-color: #F59D22FF;
-$link-color: #cf1d1d;
+$yellow: #F59D22FF;
+$red: #cf1d1d;
+$background: #161616;
+
+$done: #479d3a;
+$hover: $yellow;
+$link-color: $red;
 
 $base-color-l-100: lighten($base-color, 100%);
 $base-color-l-90: lighten($base-color, 90%);
@@ -15,8 +22,8 @@ $base-color-l-10: lighten($base-color, 10%);
 
 body {
   font-family: 'Montserrat', monospace;
-  background-color: #161616;
-  color: lighten($second-color, 90%);
+  background-color: $background;
+  color: lighten($yellow, 90%);
 }
 
 h1 {
@@ -28,66 +35,83 @@ h1 {
 
 a {
   color: $link-color;
+  text-decoration: none;
   &:hover {
-    color: $second-color;
+    color: $hover;
   }
 }
 
 .button {
-  border-radius: 0.6em;
-  cursor: pointer;
-  display: flex;
-  align-self: flex-end;
-  font-weight: bold;
-  line-height: 1;
-  margin: 1rem 0;
-  padding: 0.5em 2em;
-  text-decoration: none;
-  text-align: center;
-  text-transform: uppercase;
-
-  &-comment {
-    border: 2px solid $link-color;
-    color: $link-color;
-    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
-    &:hover {
-      box-shadow: 0 0 40px 40px $link-color inset;
-      color: lighten($second-color, 30%);
-    }
+  font-weight:400;
+  border-radius:3px;
+  float:left;
+  transition: background-color 300ms ease-in-out;
+  &_publish {
+    background-color: $done;
   }
-  &-edit {
-    border: 2px solid $second-color;
-    color: $second-color;
-    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
-    &:hover {
-      box-shadow: 0 0 40px 40px $second-color inset;
-      color: $link-color;
-    }
+  &_edit {
+    background-color: $yellow;
   }
-  &-remove {
-    border: 2px solid $link-color;
-    color: $link-color;
-    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
-    &:hover {
-      box-shadow: 0 0 40px 40px $link-color inset;
-      color: lighten($second-color, 30%);
-    }
+  &_remove {
+    background-color: $red;
+  }
+  a {
+    color:$background;
+    text-decoration:none;
   }
 
+  &_add-comment {
+    padding:5px 100px;
+    margin:10px 50px;
+    color: $link-color;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    text-decoration: none;
+    display:inline-block;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: $red;
+      display: block;
+      transform-origin: right top;
+      transform: scale(0, 1);
+      transition: transform 0.4s cubic-bezier(1, 0, 0, 1)
+    }
+
+    &:hover::before {
+      transform-origin: left top;
+      transform: scale(1, 1)
+    }
+  }
+}
+
+
+.wrapper {
+  width: 46%;
 }
 
 .block {
   border-radius: 0.4rem;
   padding: 1rem 2rem;
   margin-bottom: 1rem;
+  word-break: break-all;
   &_theme {
     color: $base-color-l-70;
     background-color: $base-color;
   }
 }
+
 .publish {
   color: $base-color-l-40;
 }
+
 .post {
   &_date {
     text-align: center;
@@ -101,13 +125,12 @@ a {
   }
   &_preview {
     transition: all 0.5s ease-out 100ms;
-    width: 46%;
     &-link {
-      color: $second-color;
+      color: $yellow;
     }
     &:hover {
       color: $base-color-l-10;
-      background-color: $second-color;
+      background-color: $hover;
       .publish {
           color: $base-color-l-10;
       }
@@ -124,7 +147,7 @@ a {
 .comment {
   &_theme {
       color: $base-color;
-      background-color: $second-color;
+      background-color: $yellow;
       &-link {
         color: darken($link-color, 20%);
         &:hover {
@@ -137,30 +160,14 @@ a {
 .nav-link {
   color: lighten($base-color, 40%)!important;
   &:hover {
-    color: $second-color!important;
+    color: $hover!important;
   }
 }
 
-
-.effect-underline:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  display: inline-block;
-  height: 1em;
+.form-field {
+  border: 2px solid $yellow;
+  border-radius: 5px;
+  height: 50px;
   width: 100%;
-  border-bottom: 1px solid;
-  margin-top: 10px;
-  opacity: 0;
-  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-  transition: opacity 0.35s, transform 0.35s;
-  -webkit-transform: scale(0,1);
-  transform: scale(0,1);
+  margin: 10px 10px 10px 0;
 }
-
-.effect-underline:hover:after {
-  opacity: 1;
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}
-

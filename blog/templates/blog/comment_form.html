@@ -1,14 +1,38 @@
 {% extends 'blog/base.html' %}
 
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block title %}
+    <title>Add new comment!</title>
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="/dist/css/medium-editor.css">
+    <link rel="stylesheet" href="{% static 'css/editor/beagle.css' %}">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+{% endblock %}
+
+{% block head-scripts %}
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <script src="{% static 'js/medium-editor.js' %}"></script>
+{% endblock %}
+
 {% block content %}
     <h1>New comment!</h1>
     <div class="block block_theme">
+
         <form class="post-form" method="POST">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form|crispy }}
             <button class="save btn btn-default" type="submit">Post comment</button>
         </form>
 
-{#        <script>let editor = new MediumEditor('.editable');</script>#}
     </div>
+
+{% endblock %}
+
+{% block footer-scripts %}
+    <script>let editor = new MediumEditor('.editable');</script>
 {% endblock %}

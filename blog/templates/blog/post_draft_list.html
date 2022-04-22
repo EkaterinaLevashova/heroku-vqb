@@ -1,5 +1,9 @@
 {% extends 'blog/base.html' %}
 
+{% block title %}
+    <title>Drafts</title>
+{% endblock %}
+
 {% block content %}
     {% for post in post_list %}
         <div class="block block_theme">
