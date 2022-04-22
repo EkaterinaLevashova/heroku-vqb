@@ -1,0 +1,29 @@
+.post {
+  &_date {
+    text-align: center;
+  }
+  &_title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  &_preview {
+    transition: all 0.5s ease-out 100ms;
+    &-link {
+      color: $yellow;
+    }
+    &:hover {
+      color: $base-color-l-10;
+      background-color: $hover;
+      .publish {
+          color: $base-color-l-10;
+      }
+      a {
+        color: darken($link-color, 20%);
+        &:hover {
+          color: darken($link-color, 50%);
+        }
+      }
+    }
+  }
+}

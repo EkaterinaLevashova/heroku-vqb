@@ -1,0 +1,54 @@
+.button {
+  font-weight:400;
+  border-radius:3px;
+  float:left;
+  transition: background-color 300ms ease-in-out;
+  &_publish {
+    background-color: $done;
+  }
+  &_edit {
+    background-color: $yellow;
+  }
+  &_remove {
+    background-color: $red;
+  }
+  a {
+    color:$background;
+    text-decoration:none;
+  }
+
+  &_add-comment {
+    padding:5px 100px;
+    margin:10px 50px;
+    color: $link-color;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    text-decoration: none;
+    display:inline-block;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: $red;
+      display: block;
+      transform-origin: right top;
+      transform: scale(0, 1);
+      transition: transform 0.4s cubic-bezier(1, 0, 0, 1)
+    }
+
+    &:hover::before {
+      transform-origin: left top;
+      transform: scale(1, 1)
+    }
+  }
+}
+
+.publish {
+  color: $base-color-l-40;
+}

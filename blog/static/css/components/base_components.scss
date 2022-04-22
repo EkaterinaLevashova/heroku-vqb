@@ -1,0 +1,38 @@
+.block {
+  height: 100%;
+  border-radius: 0.4rem;
+  padding: 1rem 2rem;
+  margin-bottom: 1rem;
+  word-break: break-all;
+  &_theme {
+    color: $base-color-l-70;
+    background-color: $base-color;
+  }
+  &_add_comment {
+    color: $red;
+    text-decoration: none;
+    &:hover {
+      color: $yellow;
+    }
+  }
+}
+
+
+#box {
+    overflow: auto;
+    vertical-align: text-top;
+    margin: 0;
+    padding: 0;
+    clear: both;
+    border-spacing: 5px;
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: $yellow;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $red;
+    border-radius: 40px;
+  }
+}

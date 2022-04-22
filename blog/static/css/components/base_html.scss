@@ -1,0 +1,37 @@
+html {
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: $yellow;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $red;
+    border-radius: 40px;
+  }
+}
+
+body {
+  height: 100%;
+  position: relative;
+  font-family: 'Montserrat', monospace;
+  background-color: $background;
+  color: lighten($yellow, 90%);
+  //padding: 1rem 0;
+}
+
+h1 {
+  color: $base-color-l-70;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+a {
+  color: $yellow;
+  text-decoration: none;
+  &:hover {
+    color: $red;
+  }
+}

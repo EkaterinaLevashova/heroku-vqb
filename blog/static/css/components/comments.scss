@@ -1,0 +1,12 @@
+.comment {
+  &_theme {
+      color: $base-color;
+      background-color: $yellow;
+      &-link {
+        color: darken($link-color, 20%);
+        &:hover {
+          color: darken($link-color, 50%);
+        }
+      }
+  }
+}

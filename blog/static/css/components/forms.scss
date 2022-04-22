@@ -1,0 +1,27 @@
+.form_field {
+  border: .5px solid $base-color;
+  border-radius: 5px;
+  width: 100%;
+  margin: 10px 10px 10px 0;
+
+  &-base {
+    background-color: $yellow;
+    &::placeholder {
+      color: $base-color;
+    }
+  }
+  &-text {
+    color: $yellow;
+    min-height: 100px;
+    padding: 5px 10px;
+    background-color: $base-color;
+
+  }
+  &:focus {
+    color: $yellow;
+    background-color: $base-color;
+    border: 1px solid $base-color;
+    box-shadow: 0 0 8px -1px $base-color;
+    outline-style: groove;
+  }
+}

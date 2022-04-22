@@ -1,205 +1,26 @@
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
 
-$base-color: #242424;
-$yellow: #F59D22FF;
-$red: #cf1d1d;
-$background: #161616;
+@import "variables";
+@import "components/base_html";
+@import "components/base_components";
+@import "components/sidebar";
+@import "components/buttons";
+@import "components/posts";
+@import "components/comments";
+@import "components/forms";
 
 
-$hover: $yellow;
-$link-color: $red;
-
-$base-color-l-100: lighten($base-color, 100%);
-$base-color-l-90: lighten($base-color, 90%);
-$base-color-l-80: lighten($base-color, 80%);
-$base-color-l-70: lighten($base-color, 70%);
-$base-color-l-60: lighten($base-color, 60%);
-$base-color-l-50: lighten($base-color, 50%);
-$base-color-l-40: lighten($base-color, 40%);
-$base-color-l-30: lighten($base-color, 30%);
-$base-color-l-20: lighten($base-color, 20%);
-$base-color-l-10: lighten($base-color, 10%);
-$done: $base-color-l-70;
-body {
-  font-family: 'Montserrat', monospace;
-  background-color: $background;
-  color: lighten($yellow, 90%);
-}
-
-h1 {
-  color: $base-color-l-70;
-  text-transform: uppercase;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-a {
-  color: $yellow;
-  text-decoration: none;
-  &:hover {
-    color: $red;
-  }
-}
-
-hr {
-  color:$yellow;
-  margin: 8px 0;
-}
-
-.button {
-  font-weight:400;
-  border-radius:3px;
-  float:left;
-  transition: background-color 300ms ease-in-out;
-  &_publish {
-    background-color: $done;
-  }
-  &_edit {
-    background-color: $yellow;
-  }
-  &_remove {
-    background-color: $red;
-  }
-  a {
-    color:$background;
-    text-decoration:none;
-  }
-
-  &_add-comment {
-    padding:5px 100px;
-    margin:10px 50px;
-    color: $link-color;
-    font-family: sans-serif;
-    text-transform: uppercase;
-    text-align: center;
-    position: relative;
-    text-decoration: none;
-    display:inline-block;
-
-    &::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: $red;
-      display: block;
-      transform-origin: right top;
-      transform: scale(0, 1);
-      transition: transform 0.4s cubic-bezier(1, 0, 0, 1)
-    }
-
-    &:hover::before {
-      transform-origin: left top;
-      transform: scale(1, 1)
-    }
-  }
-}
+//.nav-link {
+//  color: lighten($base-color, 40%)!important;
+//  &:hover {
+//    color: $hover!important;
+//  }
+//}
 
 
-.wrapper {
-  width: 46%;
-}
 
-.block {
-  border-radius: 0.4rem;
-  padding: 1rem 2rem;
-  margin-bottom: 1rem;
-  word-break: break-all;
-  &_theme {
-    color: $base-color-l-70;
-    background-color: $base-color;
-  }
-  &_add_comment {
-    color: $red;
-    text-decoration: none;
-    &:hover {
-      color: $yellow;
-    }
-  }
-}
 
-.publish {
-  color: $base-color-l-40;
-}
 
-.post {
-  &_date {
-    text-align: center;
-  }
-  &_title {
-    font-size: 2rem;
-    text-align: center;
-  }
-  &_content {
 
-  }
-  &_preview {
-    transition: all 0.5s ease-out 100ms;
-    &-link {
-      color: $yellow;
-    }
-    &:hover {
-      color: $base-color-l-10;
-      background-color: $hover;
-      .publish {
-          color: $base-color-l-10;
-      }
-      a {
-        color: darken($link-color, 20%);
-        &:hover {
-          color: darken($link-color, 50%);
-        }
-      }
-    }
-  }
-}
 
-.comment {
-  &_theme {
-      color: $base-color;
-      background-color: $yellow;
-      &-link {
-        color: darken($link-color, 20%);
-        &:hover {
-          color: darken($link-color, 50%);
-        }
-      }
-  }
-}
 
-.nav-link {
-  color: lighten($base-color, 40%)!important;
-  &:hover {
-    color: $hover!important;
-  }
-}
-
-.form_field {
-  border: .5px solid $base-color;
-  border-radius: 5px;
-  width: 100%;
-  margin: 10px 10px 10px 0;
-
-  &-base {
-    background-color: $yellow;
-    &::placeholder {
-      color: $base-color;
-    }
-  }
-  &-text {
-    color: $yellow;
-    min-height: 100px;
-    padding: 5px 10px;
-    background-color: $base-color;
-
-  }
-  &:focus {
-    color: $yellow;
-    background-color: $base-color;
-    border: 1px solid $base-color;
-    box-shadow: 0 0 8px -1px $base-color;
-    outline-style: groove;
-  }
-}

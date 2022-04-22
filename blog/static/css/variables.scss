@@ -1,0 +1,20 @@
+$base-color: #242424;
+$yellow: #F59D22;
+$red: #cf1d1d;
+$background: #161616;
+
+$base-color-l-100: lighten($base-color, 100%);
+$base-color-l-90: lighten($base-color, 90%);
+$base-color-l-80: lighten($base-color, 80%);
+$base-color-l-70: lighten($base-color, 70%);
+$base-color-l-60: lighten($base-color, 60%);
+$base-color-l-50: lighten($base-color, 50%);
+$base-color-l-40: lighten($base-color, 40%);
+$base-color-l-30: lighten($base-color, 30%);
+$base-color-l-20: lighten($base-color, 20%);
+$base-color-l-10: lighten($base-color, 10%);
+
+$hover: $yellow;
+$link-color: $red;
+
+$done: $base-color-l-70;

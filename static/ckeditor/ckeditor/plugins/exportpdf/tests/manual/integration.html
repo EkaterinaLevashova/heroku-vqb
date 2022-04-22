@@ -137,7 +137,7 @@
 		}
 
 		// Align iframe HTML with the one on the endpoint side by adding explicit encoding and DOCTYPE.
-		html = '<!DOCTYPE html><html><head><style>' + evt.data.css + '</style><meta charset="UTF-8"></head><body>' + evt.data.html + '</body></html>';
+{#		html = '<!DOCTYPE html><html><head><style>' + evt.data.css + '</style><meta charset="UTF-8"></head><body>' + evt.data.html + '</body></html>';#}
 
 		var iframe = document.createElement( 'iframe' );
 		document.querySelector( '#preview' ).appendChild( iframe );

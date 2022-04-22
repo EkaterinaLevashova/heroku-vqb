@@ -7,24 +7,35 @@
 {% block content %}
 
     <h1>All posts</h1>
-    <hr>
-    <div class="d-flex justify-content-around flex-wrap">
+    <div class="row">
+     {% lorem 4 p %}
+    </div>
+    <div class="row flex-nowrap" id="box">
         {% for post in post_list %}
-            <div class="d-flex flex-column mb-4 w-100">
+            <div class="col-12 col-lg-6 py-3 item">
                 <div class="block block_theme post_preview">
-                    <div class="d-flex flex-column justify-content-between">
-                        <h2><a href="{% url 'post_detail' pk=post.pk %}" class="post_preview-link">{{ post.title|truncatechars:15 }}</a></h2>
-                        <div class="post_date d-flex">
-                            <p class="my-auto publish">Published on: {{ post.published_date|date:'D M Y' }}</p>
+                    <div class="d-flex flex-column justify-content-between h-100">
+
+                        <div class="d-flex flex-column justify-content-between">
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex flex-column">
+                                    <h2><a href="{% url 'post_detail' pk=post.pk %}" class="post_preview-link">{{ post.title|truncatechars:15 }}</a></h2>
+                                    <div class="post_date d-flex">
+                                        <p class="my-auto publish">Published on: {{ post.published_date|date:'D M Y' }}</p>
+                                    </div>
+                                </div>
+
+                                {% include 'components/buttons.html' %}
+                            </div>
+                            <p class="post_content mb-3">{{ post.text|safe|linebreaksbr|truncatechars:400 }}</p>
                         </div>
-                        <p class="post_content mb-3">{{ post.text|safe|linebreaksbr|truncatechars:400 }}</p>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <a href="{% url 'post_detail' pk=post.pk %}" class="block_add_comment mt-auto">Comments: {{ post.approve_comments.count }}</a>
-                        {% if user.is_authenticated %}
-                            {% include 'components/buttons.html' %}
-                        {% endif %}
+
+                        <div class="d-flex flex-column">
+                            <div class="d-flex justify-content-between">
+                                <a href="{% url 'post_detail' pk=post.pk %}" class="block_add_comment mx-auto mt-auto">Comments: {{ post.approve_comments.count }}</a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

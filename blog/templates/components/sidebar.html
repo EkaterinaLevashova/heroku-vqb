@@ -1,0 +1,67 @@
+{% load static %}
+<nav class="main-menu">
+    <ul>
+        <li>
+            <a href="{% url 'post_list' %}">
+                <i class="fa fa-home fa-2x"></i>
+                <span class="nav-text">Dashboard</span>
+            </a>
+        </li>
+        <li class="has-subnav">
+            <a href="{% url 'about' %}">
+                <i class="fa fa-laptop fa-2x"></i>
+                <span class="nav-text">About</span>
+            </a>
+        </li>
+        <li class="has-subnav">
+            <a href="https://codepen.io/">
+               <i class="fa fa-list fa-2x"></i>
+                <span class="nav-text">Codepen</span>
+            </a>
+        </li>
+        <li class="has-subnav">
+            <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/">
+               <i class="fa fa-folder-open fa-2x"></i>
+                <span class="nav-text">Bootstrap</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.youtube.com">
+                <i class="fa fa-bar-chart-o fa-2x"></i>
+                <span class="nav-text">Youtube</span>
+            </a>
+        </li>
+        {% if user.is_authenticated %}
+            <li>
+                <a href="{% url 'post_new' %}">
+                    <i class="fa fa-font fa-2x"></i>
+                    <span class="nav-text">New Post</span>
+                </a>
+            </li>
+            <li>
+               <a href="{% url 'post_draft_list' %}">
+                   <i class="fa fa-table fa-2x"></i>
+                    <span class="nav-text">Drafts</span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+
+    <ul class="logout">
+        {% if user.is_authenticated %}
+            <li>
+               <a href="{% url 'logout' %}">
+                    <i class="fa fa-power-off fa-2x"></i>
+                    <span class="nav-text">Log Out</span>
+                </a>
+            </li>
+        {% else %}
+            <li>
+               <a href="{% url 'login' %}">
+                    <i class="fa fa-power-off fa-2x"></i>
+                    <span class="nav-text">Log In</span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
