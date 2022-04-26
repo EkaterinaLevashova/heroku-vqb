@@ -39,7 +39,7 @@ def user_login(request):
             return redirect('blog:post_list')
         else:
             messages.info(request, 'Invalid Username or Password')
-            return redirect('user_login')
+            return redirect('blog:user_login')
     else:
         return render(request, 'registration/login.html')
 
