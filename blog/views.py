@@ -10,7 +10,11 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User, auth
+
+from django.contrib.auth.models import User, auth, Group
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
@@ -64,13 +68,18 @@ def registration(request):
             )
             email.send()
             registered = True
+
+            @receiver(post_save, sender=User)
+            def create_user_profile(sender, instance, created, **kwargs):
+                if created:
+                    instance.groups.add(Group.objects.get(name='Guest'))
+
             return HttpResponse('Please confirm your email address to complete the registration')
 
         else:
             print(user_form.errors)
     else:
         user_form = UserForm()
-
     return render(request=request, template_name='registration/registration.html',
                   context={'form': user_form, 'registered': registered, })
 
