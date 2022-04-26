@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="d-flex justify-content-center mt-5">
+        <div class="block block_theme d-flex flex-column">
+            <h2>Register your acc plz!</h2>
+            {% if form.errors %}
+                <p>Your username and password didn't match! Please try again!</p>
+            {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.username|add_class:"form_field form_field-base form_field-base_auth"|as_crispy_field }}
+                {{ form.email|add_class:"form_field form_field-base form_field-base_auth"|as_crispy_field  }}
+                {{ form.password1|add_class:"form_field form_field-base form_field-base_auth"|as_crispy_field }}
+                {{ form.password2|add_class:"form_field form_field-base form_field-base_auth"|as_crispy_field }}
+                <input type="submit" class="btn button button_login btn-md my-auto align-self-center" value="Register">
+            </form>
+        </div>
+    </div>
+{% endblock %}

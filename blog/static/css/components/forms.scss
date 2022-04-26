@@ -9,19 +9,31 @@
     &::placeholder {
       color: $base-color;
     }
+    &:focus {
+      border: 1px solid $base-color;
+      box-shadow: 0 0 8px -1px $base-color;
+    }
+    &_auth {
+      &:focus {
+        border: .5px solid $yellow;
+        box-shadow: 0 0 5px -1px $yellow;
+      }
+    }
   }
+
   &-text {
     color: $yellow;
     min-height: 100px;
     padding: 5px 10px;
     background-color: $base-color;
-
+    &:focus {
+      border: 1px solid $base-color;
+      box-shadow: 0 0 8px -1px $base-color;
+    }
   }
   &:focus {
     color: $yellow;
     background-color: $base-color;
-    border: 1px solid $base-color;
-    box-shadow: 0 0 8px -1px $base-color;
     outline-style: groove;
   }
 }

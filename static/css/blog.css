@@ -140,14 +140,19 @@ nav ul, nav li {
 .button {
   font-weight: 400;
   border-radius: 3px;
-  float: left;
   transition: background-color 300ms ease-in-out; }
+  .button_login {
+    background-color: #d7d7d7;
+    float: right; }
   .button_publish {
-    background-color: #d7d7d7; }
+    background-color: #d7d7d7;
+    float: left; }
   .button_edit {
-    background-color: #F59D22; }
+    background-color: #F59D22;
+    float: left; }
   .button_remove {
-    background-color: #cf1d1d; }
+    background-color: #cf1d1d;
+    float: left; }
   .button a {
     color: #161616;
     text-decoration: none; }
@@ -218,16 +223,23 @@ nav ul, nav li {
     background-color: #F59D22; }
     .form_field-base::placeholder {
       color: #242424; }
+    .form_field-base:focus {
+      border: 1px solid #242424;
+      box-shadow: 0 0 8px -1px #242424; }
+    .form_field-base_auth:focus {
+      border: 0.5px solid #F59D22;
+      box-shadow: 0 0 5px -1px #F59D22; }
   .form_field-text {
     color: #F59D22;
     min-height: 100px;
     padding: 5px 10px;
     background-color: #242424; }
+    .form_field-text:focus {
+      border: 1px solid #242424;
+      box-shadow: 0 0 8px -1px #242424; }
   .form_field:focus {
     color: #F59D22;
     background-color: #242424;
-    border: 1px solid #242424;
-    box-shadow: 0 0 8px -1px #242424;
     outline-style: groove; }
 
 /*# sourceMappingURL=blog.css.map */

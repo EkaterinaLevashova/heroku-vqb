@@ -13,5 +13,7 @@ urlpatterns = [
     path('comment/<int:pk>/approve/', comment_approve, name='comment_approve'),
     path('comment/<int:pk>/remove/', comment_remove, name='comment_remove'),
     path('post/<int:pk>/publish/', post_publish, name='post_publish'),
+    path('accounts/registration/', registration, name='registration'),
+
 ]
 

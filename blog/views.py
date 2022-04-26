@@ -5,6 +5,7 @@ from blog.models import Post, Comment
 from blog.forms import *
 
 from django.urls import reverse_lazy
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (TemplateView,
@@ -104,3 +105,27 @@ def comment_remove(request, pk):
     comment.delete()
     return redirect('post_detail', pk=post_pk)
 
+
+def registration(request):
+    registered = False
+
+    if request.method == 'POST':
+        user_form = UserForm(data=request.POST)
+
+        if user_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
+            login(request, user)
+            registered = True
+            return redirect('post_list')
+        else:
+            print(user_form.errors)
+    else:
+        user_form = UserForm()
+
+    context_dict = {
+        'form': user_form,
+        'registered': registered,
+    }
+    return render(request=request,  template_name='registration/registration.html', context=context_dict)

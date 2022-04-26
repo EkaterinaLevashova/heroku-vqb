@@ -1,17 +1,22 @@
 {% extends 'blog/base.html' %}
 
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
 {% block content %}
-    <div class="h-100 p-5 text-white bg-dark rounded-3">
-        <h2>Please login</h2>
-        <h3>(Must be superuser, please check with the site admin</h3>
-        {% if form.errors %}
-            <p>Your username and password didn't match! Please try again!</p>
-        {% endif %}
-        <form action="{% url 'login' %}" method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" class="btn btn-primary" value="Login">
-            <input type="hidden" name="next" value="{{ next }}">
-        </form>
+    <div class="d-flex justify-content-center mt-5">
+        <div class="block block_theme d-flex flex-column">
+            <h2>Please login</h2>
+            {% if form.errors %}
+                <p>Your username and password didn't match! Please try again!</p>
+            {% endif %}
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                {{ form.username|add_class:"form_field form_field-base"|as_crispy_field }}
+                {{ form.password|add_class:"form_field form_field-base"|as_crispy_field }}
+                <input type="submit" class="btn button button_login btn-md my-auto align-self-center" value="Login">
+                <input type="hidden" name="next" value="{{ next_page }}">
+            </form>
+        </div>
     </div>
 {% endblock %}

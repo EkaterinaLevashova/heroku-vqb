@@ -1,16 +1,23 @@
 .button {
   font-weight:400;
   border-radius:3px;
-  float:left;
   transition: background-color 300ms ease-in-out;
+
+  &_login {
+    background-color: $done;
+    float: right;
+  }
   &_publish {
     background-color: $done;
+    float:left;
   }
   &_edit {
     background-color: $yellow;
+    float:left;
   }
   &_remove {
     background-color: $red;
+    float:left;
   }
   a {
     color:$background;
