@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 
-{% load crispy_forms_tags %}
-{% load widget_tweaks %}
+{#{% load crispy_forms_tags %}#}
+{#{% load widget_tweaks %}#}
 
 {% block content %}
     <div class="d-flex justify-content-center mt-5">
@@ -10,12 +10,51 @@
             {% if form.errors %}
                 <p>Your username and password didn't match! Please try again!</p>
             {% endif %}
-            <form action="{% url 'login' %}" method="POST">
+            <form action="{% url 'blog:login' %}" method="POST">
                 {% csrf_token %}
-                {{ form.username|add_class:"form_field form_field-base"|as_crispy_field }}
-                {{ form.password|add_class:"form_field form_field-base"|as_crispy_field }}
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text"
+                           class="form-control form_field form_field-base"
+                           name="username"
+                           id="username"
+                           placeholder="Enter Username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password"
+                           class="form-control form_field form_field-base"
+                           name="password"
+                           id="password"
+                           placeholder="Enter Password">
+                </div>
+
+{#                <button type="submit" class="btn btn-primary">LOGIN</button>#}
                 <input type="submit" class="btn button button_login btn-md my-auto align-self-center" value="Login">
-                <input type="hidden" name="next" value="{{ next_page }}">
+{#                <input type="hidden" name="next" value="{{ next_page }}">#}
+
+                <br />
+
+                <div class="form-group">
+                    {% for message in messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {{message}}
+                    </div>
+                    {% endfor %}
+                </div>
+{#                {{ form.username|add_class:"form_field form_field-base"|as_crispy_field }}#}
+{#                {{ form.password|add_class:"form_field form_field-base"|as_crispy_field }}#}
+{#                <label>#}
+{#                    Username:#}
+{#                    <input type="text" name="username" class="form_field form_field-base" placeholder="Enter Username">#}
+{#                </label>#}
+{##}
+{#                <label>#}
+{#                    Password:#}
+{#                    <input type="password" class="form_field form_field-base" name="password">#}
+{#                </label>#}
+
             </form>
         </div>
     </div>

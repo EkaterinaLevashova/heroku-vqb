@@ -19,7 +19,7 @@
                         <div class="d-flex flex-column justify-content-between">
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex flex-column">
-                                    <h2><a href="{% url 'post_detail' pk=post.pk %}" class="post_preview-link">{{ post.title|truncatechars:15 }}</a></h2>
+                                    <h2><a href="{% url 'blog:post_detail' pk=post.pk %}" class="post_preview-link">{{ post.title|truncatechars:15 }}</a></h2>
                                     <div class="post_date d-flex">
                                         <p class="my-auto publish">Published on: {{ post.published_date|date:'D M Y' }}</p>
                                     </div>
@@ -33,7 +33,7 @@
 
                         <div class="d-flex flex-column">
                             <div class="d-flex justify-content-between">
-                                <a href="{% url 'post_detail' pk=post.pk %}" class="block_add_comment mx-auto mt-auto">Comments: {{ post.approve_comments.count }}</a>
+                                <a href="{% url 'blog:post_detail' pk=post.pk %}" class="block_add_comment mx-auto mt-auto">Comments: {{ post.approve_comments.count }}</a>
                             </div>
                         </div>
 

@@ -9,13 +9,13 @@
     {% endif %}
 
     <div class="btn button button_edit btn-md my-auto mx-2">
-        <a href="{% url 'post_edit' pk=post.pk %}">
+        <a href="{% url 'blog:post_edit' pk=post.pk %}">
           <i class="fa fa-solid fa-pencil"></i>
         </a>
     </div>
 
     <div class="btn button button_remove btn-md my-auto mx-2">
-        <a href="{% url 'post_remove' pk=post.pk %}">
+        <a href="{% url 'blog:post_remove' pk=post.pk %}">
           <i class="fa fa-trash-o   "></i>
         </a>
     </div>

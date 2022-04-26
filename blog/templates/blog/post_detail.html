@@ -23,7 +23,7 @@
         {% endif %}
     </div>
     <div class="d-flex flex-column">
-        <a href="{% url 'add_comment_to_post' pk=post.pk %}" class="button_add-comment">Add comment</a>
+        <a href="{% url 'blog:add_comment_to_post' pk=post.pk %}" class="button_add-comment">Add comment</a>
 
         {% for comment in post.comments.all %}
             <div class="d-flex flex-column mb-4">
@@ -36,13 +36,13 @@
                             <div class="d-flex justify-content-end">
                                 {% if not comment.approved_comment %}
                                     <div class="btn button button_publish btn-sm my-auto mx-2">
-                                        <a href="{% url 'comment_approve' pk=comment.pk %}">
+                                        <a href="{% url 'blog:comment_approve' pk=comment.pk %}">
                                           <i class="fa fa-solid fa-upload"></i>
                                         </a>
                                     </div>
                                 {% endif %}
                                 <div class="btn button button_remove btn-sm my-auto mx-2">
-                                    <a href="{% url 'comment_remove' pk=comment.pk %}">
+                                    <a href="{% url 'blog:comment_remove' pk=comment.pk %}">
                                       <i class="fa fa-trash-o"></i>
                                     </a>
                                 </div>

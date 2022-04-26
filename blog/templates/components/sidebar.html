@@ -2,13 +2,13 @@
 <nav class="main-menu">
     <ul>
         <li>
-            <a href="{% url 'post_list' %}">
+            <a href="{% url 'blog:post_list' %}">
                 <i class="fa fa-home fa-2x"></i>
                 <span class="nav-text">Home</span>
             </a>
         </li>
         <li class="has-subnav">
-            <a href="{% url 'about' %}">
+            <a href="{% url 'blog:about' %}">
                 <i class="fa fa-laptop fa-2x"></i>
                 <span class="nav-text">About</span>
             </a>
@@ -33,13 +33,13 @@
         </li>
         {% if user.is_authenticated %}
             <li>
-                <a href="{% url 'post_new' %}">
+                <a href="{% url 'blog:post_new' %}">
                     <i class="fa fa-font fa-2x"></i>
                     <span class="nav-text">New Post</span>
                 </a>
             </li>
             <li>
-               <a href="{% url 'post_draft_list' %}">
+               <a href="{% url 'blog:post_draft_list' %}">
                    <i class="fa fa-table fa-2x"></i>
                     <span class="nav-text">Drafts</span>
                 </a>
@@ -57,9 +57,15 @@
             </li>
         {% else %}
             <li>
-               <a href="{% url 'login' %}">
+               <a href="{% url 'blog:login' %}">
                     <i class="fa fa-power-off fa-2x"></i>
-                    <span class="nav-text">Log In</span>
+                    <span class="nav-text">Sign In</span>
+                </a>
+            </li>
+            <li>
+               <a href="{% url 'blog:registration' %}">
+                    <i class="fa fa-power-off fa-2x"></i>
+                    <span class="nav-text">Sign Up</span>
                 </a>
             </li>
         {% endif %}

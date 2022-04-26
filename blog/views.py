@@ -1,19 +1,94 @@
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-
-from blog.models import Post, Comment
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from blog.forms import *
 
 from django.urls import reverse_lazy
-from django.contrib.auth import login
+from django.contrib import messages
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User, auth
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
+from .tokens import account_activation_token
+
 from django.views.generic import (TemplateView,
                                   ListView,
                                   DetailView,
                                   CreateView,
                                   UpdateView,
                                   DeleteView, )
+
+
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            return redirect('blog:post_list')
+        else:
+            messages.info(request, 'Invalid Username or Password')
+            return redirect('user_login')
+    else:
+        return render(request, 'registration/login.html')
+
+
+def registration(request):
+    registered = False
+
+    if request.method == 'POST':
+        user_form = UserForm(data=request.POST)
+
+        if user_form.is_valid():
+            user = user_form.save(commit=False)
+            user.is_active = False
+            user.save()
+            current_site = get_current_site(request)
+            mail_subject = 'Activate your blog account.'
+            message = render_to_string('registration/acc_active_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
+            to_email = user_form.cleaned_data.get('email')
+            email = EmailMessage(
+                mail_subject, message, to=[to_email]
+            )
+            email.send()
+            registered = True
+            return HttpResponse('Please confirm your email address to complete the registration')
+
+        else:
+            print(user_form.errors)
+    else:
+        user_form = UserForm()
+
+    return render(request=request, template_name='registration/registration.html',
+                  context={'form': user_form, 'registered': registered, })
+
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        context = {'uidb64': uidb64, 'token': token}
+        return render(request, 'blog/post_list.html', context=context)
+    else:
+        return HttpResponse('Activation link is invalid!')
 
 
 class AboutView(TemplateView):
@@ -104,28 +179,3 @@ def comment_remove(request, pk):
     post_pk = comment.post.pk
     comment.delete()
     return redirect('post_detail', pk=post_pk)
-
-
-def registration(request):
-    registered = False
-
-    if request.method == 'POST':
-        user_form = UserForm(data=request.POST)
-
-        if user_form.is_valid():
-            user = user_form.save()
-            user.set_password(user.password)
-            user.save()
-            login(request, user)
-            registered = True
-            return redirect('post_list')
-        else:
-            print(user_form.errors)
-    else:
-        user_form = UserForm()
-
-    context_dict = {
-        'form': user_form,
-        'registered': registered,
-    }
-    return render(request=request,  template_name='registration/registration.html', context=context_dict)
