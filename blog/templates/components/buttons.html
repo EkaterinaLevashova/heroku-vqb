@@ -2,7 +2,7 @@
 
     {% if not post.published_date %}
         <div class="btn button button_publish btn-md my-auto mx-2">
-            <a href="{% url 'post_publish' pk=post.pk %}">
+            <a href="{% url 'blog:post_publish' pk=post.pk %}">
               <i class="fa fa-solid fa-upload"></i>
             </a>
         </div>

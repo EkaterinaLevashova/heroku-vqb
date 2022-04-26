@@ -8,7 +8,7 @@
     {% for post in post_list %}
         <div class="block block_theme">
             <p class="date">created: {{ post.create_date|date:'D M A' }}</p>
-            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <h2><a href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
             <p>{{ post.text|truncatechars:100 }}</p>
             {% include 'components/buttons.html' %}
         </div>
