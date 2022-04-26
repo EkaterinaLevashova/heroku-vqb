@@ -1,6 +1,6 @@
 .main-menu:hover,nav.main-menu.expanded {
-width:200px;
-overflow:visible;
+  width:200px;
+  overflow:visible;
 }
 
 .main-menu {
@@ -70,23 +70,23 @@ overflow:visible;
 }
 
 .no-touch .scrollable.hover {
-overflow-y:hidden;
+  overflow-y:hidden;
 }
 
 a:hover,a:focus {
-text-decoration:none;
+  text-decoration:none;
 }
 
 nav {
-user-select:none;
+  user-select:none;
 }
 
 nav ul,nav li {
-outline:0;
-margin:0;
-padding:0;
+  outline:0;
+  margin:0;
+  padding:0;
 }
 .main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
-color:#fff;
-background-color:$red;
+  color:#fff;
+  background-color:$red;
 }

@@ -24,8 +24,9 @@
                                         <p class="my-auto publish">Published on: {{ post.published_date|date:'D M Y' }}</p>
                                     </div>
                                 </div>
-
-                                {% include 'components/buttons.html' %}
+                                {% if user.is_authenticated %}
+                                    {% include 'components/buttons.html' %}
+                                {% endif %}
                             </div>
                             <p class="post_content mb-3">{{ post.text|safe|linebreaksbr|truncatechars:400 }}</p>
                         </div>

@@ -32,6 +32,7 @@
                     <div class="block comment_theme">
                         <div class="d-flex justify-content-between">
                             {{ comment.create_date }}
+                        {% if user.is_authenticated %}
                             <div class="d-flex justify-content-end">
                                 {% if not comment.approved_comment %}
                                     <div class="btn button button_publish btn-sm my-auto mx-2">
@@ -46,6 +47,7 @@
                                     </a>
                                 </div>
                             </div>
+                        {% endif %}
                         </div>
                         <p>{{ comment.text|safe|linebreaks }}</p>
                         <p>Posted by: {{ comment.author }}</p>
