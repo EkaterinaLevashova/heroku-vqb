@@ -9,6 +9,10 @@
     &::placeholder {
       color: $base-color;
     }
+    &:disabled {
+      background-color: $base-color;
+      color: $yellow;
+    }
     &:focus {
       border: 1px solid $base-color;
       box-shadow: 0 0 8px -1px $base-color;

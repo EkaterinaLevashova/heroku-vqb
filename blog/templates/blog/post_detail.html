@@ -5,49 +5,71 @@
 {% endblock %}
 
 {% block content %}
-    <div class="block block_theme">
-        <h1 class="post_title">{{ post.title }}</h1>
+    <div class="row">
+        <div class="block block_theme">
+            <h1 class="post_title">{{ post.title }}</h1>
 
-        {% if post.published_date %}
-            <div class="date post_date">
-                {{ post.published_date }}
-            </div>
-        {% endif %}
+            {% if post.published_date %}
+                <div class="date post_date">
+                    {{ post.published_date }}
+                </div>
+            {% endif %}
 
-        <p class="post_content">{{ post.text|safe|linebreaksbr }}</p>
+            <p class="post_content">{{ post.text|safe|linebreaksbr }}</p>
 
-        <hr>
-
-        {% if user.is_authenticated %}
-            {% include 'components/buttons.html' %}
-        {% endif %}
+            <hr>
+            {% if user.is_authenticated %}
+                {% for group in user.groups.all %}
+                  {% if group.name == 'Admins' %}
+                    {% include 'components/buttons.html' %}
+                  {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
     </div>
-    <div class="d-flex flex-column">
-        <a href="{% url 'blog:add_comment_to_post' pk=post.pk %}" class="button_add-comment">Add comment</a>
 
+    <div class="d-flex flex-column">
+        {% if user.is_authenticated %}
+            <a href="{% url 'blog:add_comment_to_post' pk=post.pk %}" class="button_add-comment">Add comment</a>
+        {% else %}
+            <p class="button_add-comment">Please,
+                <a href="{% url 'blog:login' %}">
+                    <span class="nav-text">Sign In</span>
+                </a>
+                or
+                <a href="{% url 'blog:registration' %}">
+                    <span class="nav-text">Sign Up</span>
+                </a>
+                to add comments!</p>
+        {% endif %}
         {% for comment in post.comments.all %}
             <div class="d-flex flex-column mb-4">
 
                 {% if user.is_authenticated or comment.approved_comment %}
+
                     <div class="block comment_theme">
                         <div class="d-flex justify-content-between">
                             {{ comment.create_date }}
-                        {% if user.is_authenticated %}
-                            <div class="d-flex justify-content-end">
-                                {% if not comment.approved_comment %}
-                                    <div class="btn button button_publish btn-sm my-auto mx-2">
-                                        <a href="{% url 'blog:comment_approve' pk=comment.pk %}">
-                                          <i class="fa fa-solid fa-upload"></i>
-                                        </a>
-                                    </div>
-                                {% endif %}
-                                <div class="btn button button_remove btn-sm my-auto mx-2">
-                                    <a href="{% url 'blog:comment_remove' pk=comment.pk %}">
-                                      <i class="fa fa-trash-o"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        {% endif %}
+                            {% if user.is_authenticated %}
+                                {% for group in user.groups.all %}
+                                    {% if group.name == 'Admins' %}
+                                        <div class="d-flex justify-content-end">
+                                            {% if not comment.approved_comment %}
+                                                <div class="btn button button_publish btn-sm my-auto mx-2">
+                                                    <a href="{% url 'blog:comment_approve' pk=comment.pk %}">
+                                                      <i class="fa fa-solid fa-upload"></i>
+                                                    </a>
+                                                </div>
+                                            {% endif %}
+                                            <div class="btn button button_remove btn-sm my-auto mx-2">
+                                                <a href="{% url 'blog:comment_remove' pk=comment.pk %}">
+                                                  <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
                         </div>
                         <p>{{ comment.text|safe|linebreaks }}</p>
                         <p>Posted by: {{ comment.author }}</p>

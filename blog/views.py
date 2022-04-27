@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.utils.encoding import force_bytes, force_text
@@ -8,7 +8,9 @@ from blog.forms import *
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
+
 from django.contrib.auth.decorators import login_required
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.contrib.auth.models import User, auth, Group
@@ -125,6 +127,9 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     redirect_field_name = 'blog/post_detail.html'
     form_class = PostForm
     model = Post
+
+    # def get_queryset(self):
+    #     return Post.objects.filter(user=self.request.user.username)
 
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):

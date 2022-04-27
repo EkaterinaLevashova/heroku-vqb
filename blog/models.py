@@ -1,11 +1,11 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, auth
 
 
 class Post(models.Model):
-    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE, default=User.username)
     title = models.CharField(max_length=200)
     text = models.TextField()
     create_date = models.DateTimeField(default=timezone.now)
@@ -27,7 +27,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey('blog.Post', related_name='comments', on_delete=models.CASCADE)
-    author = models.CharField(max_length=200)
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE, default=User.username)
     text = models.TextField()
     create_date = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)
@@ -41,4 +41,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+
 

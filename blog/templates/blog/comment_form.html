@@ -21,22 +21,25 @@
 
 {% block content %}
     <h1>New comment!</h1>
-    <div class="block comment_theme">
+    <div class="row">
+        <div class="block comment_theme">
 
-        <form class="post-form" method="POST">
-            {% csrf_token %}
+            <form class="post-form" method="POST">
+                {% csrf_token %}
+                {{ form.author|add_class:"form_field form_field-base"|attr:"disabled"|as_crispy_field }}
 
-            {{ form.author|add_class:"form_field form_field-base"|attr:"placeholder:Enter your cool title"|as_crispy_field }}
+                <div class="d-flex flex-column">
+                    {{ form.text|add_class:"form_field form_field-text" }}
+                    <button class="btn button button_publish btn-sm my-auto align-self-start" type="submit">
+                        <i class="fa fa-solid fa-upload me-1"></i>SAVE
+                    </button>
+                </div>
 
-            <div class="d-flex flex-column">
-                {{ form.text|add_class:"form_field form_field-text" }}
-                <button class="btn button button_publish btn-sm my-auto align-self-start" type="submit">
-                    <i class="fa fa-solid fa-upload me-1"></i>SAVE
-                </button>
-            </div>
-        </form>
+            </form>
 
+        </div>
     </div>
+
 
 {% endblock %}
 

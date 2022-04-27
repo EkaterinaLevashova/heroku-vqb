@@ -223,6 +223,9 @@ nav ul, nav li {
     background-color: #F59D22; }
     .form_field-base::placeholder {
       color: #242424; }
+    .form_field-base:disabled {
+      background-color: #242424;
+      color: #F59D22; }
     .form_field-base:focus {
       border: 1px solid #242424;
       box-shadow: 0 0 8px -1px #242424; }

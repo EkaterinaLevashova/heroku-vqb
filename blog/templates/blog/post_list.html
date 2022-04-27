@@ -25,7 +25,11 @@
                                     </div>
                                 </div>
                                 {% if user.is_authenticated %}
-                                    {% include 'components/buttons.html' %}
+                                    {% for group in user.groups.all %}
+                                      {% if group.name == 'Admins' %}
+                                        {% include 'components/buttons.html' %}
+                                      {% endif %}
+                                    {% endfor %}
                                 {% endif %}
                             </div>
                             <p class="post_content mb-3">{{ post.text|safe|linebreaksbr|truncatechars:400 }}</p>
